@@ -15,15 +15,11 @@ RUN apt-get update && apt-get install -y \
 # Base libcamera image, with non-toolchain dependencies for building.
 # Base libcamera always-host packages (compilation dependencies)
 RUN apt-get install -y \
-	ninja-build pkg-config \
+	meson ninja-build pkg-config \
 	python3-yaml python3-ply python3-jinja2 \
 	openssl \
-	python3-sphinx doxygen graphviz \
-	liblttng-ust-dev python3-jinja2 lttng-tools \
-	python3-pip
-
-# Install supported version of meson
-RUN pip3 install 'meson==0.55.3'
+	python3-sphinx doxygen graphviz texlive-latex-extra \
+	liblttng-ust-dev python3-jinja2 lttng-tools
 
 # Base libcamera cross compiler and target architecture packages
 RUN apt-get install -y \
@@ -37,8 +33,10 @@ RUN apt-get install -y \
 	qttools5-dev-tools:arm64 libtiff-dev:arm64 \
 	libexif-dev:arm64 libjpeg-dev:arm64 libyaml-dev:arm64
 
+# Generate the meson cross file using the debian package helper
+RUN /usr/share/meson/debcrossgen --arch arm64 -o /usr/share/meson/arm64-cross
 
-
+# Create a custom user to operate in the container
 RUN adduser --disabled-password --gecos '' libcamera
 RUN adduser libcamera sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
