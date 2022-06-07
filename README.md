@@ -21,3 +21,6 @@ If this works well, I'll hope to wrap this up into a better system for testing c
 ### Install built components on RPi
 
 TODO: This could be a step to build a debian package (would be nice) or tar/scp built objects to the target...
+
+Another alternative is to run sshfs and mount the RPi rootfs directly. Then a script could call 
+`DESTDIR=$RPI_MOUNT_POINT ninja -C ./build/rpi/bullsye install`
