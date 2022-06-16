@@ -20,5 +20,5 @@ These commands are expected to be run in a working directory containing the chec
 `ninja -C ./build/rpi/bullseye/`
 
 ### Install built components on RPi
-`RPI_MOUNT_POINT=$(readlink -f ../mountpoint)` 
-`DESTDIR=$RPI_MOUNT_POINT ninja -C ./build/rpi/bullseye install`
+`DESTDIR=$(readlink -f ../mountpoint)`
+`ninja -C ./build/rpi/bullseye install`
