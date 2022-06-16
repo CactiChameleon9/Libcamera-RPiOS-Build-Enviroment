@@ -22,10 +22,10 @@ Key information: I needed sshfs to be mounted as root for `ninja install` to wor
 
 ### Build your cross compile docker image: (TODO: make a prebuilt image to pull)
 
-`/usr/bin/docker build -t libcamera/debian/bullseye-cross-arm64 - < Dockerfile.debian.bullseye.cross-arm64`
+`sudo docker build -t libcamera/debian/bullseye-cross-arm64 - < Dockerfile.debian.bullseye.cross-arm64`
 
 ### Run a shell in the new docker image in your working directory (containing libcamera and your mountpoint)
-`docker run -v "$PWD":"$PWD" -w "$PWD" --rm -it libcamera/debian/bullseye-cross-arm64`
+`sudo docker run -v "$PWD":"$PWD" -w "$PWD" --rm -it libcamera/debian/bullseye-cross-arm64`
 
 ### Enter your libcamera sources directory
 `cd libcamera`
@@ -37,5 +37,4 @@ Key information: I needed sshfs to be mounted as root for `ninja install` to wor
 `ninja -C ./build/rpi/bullseye/`
 
 ### Install built components on RPi
-`DESTDIR=$(readlink -f ../mountpoint)`
-`ninja -C ./build/rpi/bullseye install`
+`sudo DESTDIR=$(readlink -f ../mountpoint) ninja -C ./build/rpi/bullseye install`
