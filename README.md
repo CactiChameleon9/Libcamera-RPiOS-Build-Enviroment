@@ -3,6 +3,23 @@
 This will let you build a cross compilation docker image, and use it to compile libcamera for the RPi.
 These commands are expected to be run in a working directory containing the checked out libcamera source and a mountpoint for the raspberry pi rootfs (using `sshfs` for example). You will also need to save Dockerfile file locally. A meson cross file will be automatically generated inside the debian bullseye environment.
 
+## Setting up your working directory
+Key information: I needed sshfs to be mounted as root for `ninja install` to work
+#### Make the directory
+`mkdir libcamera-raspi; cd libcamera-raspi`
+#### Download the dockerfile
+`git clone https://gist.github.com/CactiChameleon9/1ce1bcf828e9937beb9c60fd1ebc0118 ./`
+#### Clone the sources
+`git clone https://git.libcamera.org/libcamera/libcamera.git`
+#### Make your mountpoint as a root user
+`sudo mkdir mountpoint`
+#### Install sshfs using your package manager
+`sudo apt-get install sshfs -y`
+#### Mount the pi's filesystem using as root sshfs. Use your pi's ip address and user account name here.
+`sudo sshfs pi@192.168.1.10:/ ./mountpoint`
+
+## Building and installing
+
 ### Build your cross compile docker image: (TODO: make a prebuilt image to pull)
 
 `/usr/bin/docker build -t libcamera/debian/bullseye-cross-arm64 - < Dockerfile.debian.bullseye.cross-arm64`
