@@ -1,2 +1,3 @@
-debian/usr
+libcamera-raspi-debian/usr
 libcamera
+libcamera-raspi-debian.deb
