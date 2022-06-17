@@ -28,15 +28,33 @@ This is a simple way to build testing libcamera rpm's on non fedora distros. The
 ### (Cross-compile) Build libcamera at host compile speeds
 `ninja -C ./build`
 
-## Build the rpm
+## Building the rpm
+
+### Install into a temporary directory
 ```
 mkdir ../libcamera-0.0.0
 DESTDIR=$(readlink -f ../libcamera-0.0.0) ninja -C ./build install
+```
+
+### Workaround to put in /usr not /usr/local (TODO - NEEDS TO BE FIXED WITH BUILD CONFIG)
+####### This is needed because fedora doesn't look in /usr/local/lib64 for libs
+```
 cd ../
+mv libcamera-0.0.0/usr/local/* libcamera-0.0.0/usr/
+rmdir libcamera-0.0.0/usr/local/
+```
+
+### Create the built sources archive
+```
 tar --create --file libcamera-fedora.tar.xz libcamera-0.0.0
 mv libcamera-fedora.tar.xz rpmbuild/SOURCES/
-rm -r libcamera-0.0.0
+rm -rf libcamera-0.0.0
+```
+
+### Build the RPM package
+```
 HOME=$(readlink -f ./) rpmbuild -bb rpmbuild/SPECS/fedora-libcamera.spec
 ```
 
 You should now have a built rpm file at `rpmbuild/RPMS/x86_64/libcamera-0.0.0-0.fc36.x86_64.rpm`
+Note: To update the package, uninstalling and installing is required because no change in the version number

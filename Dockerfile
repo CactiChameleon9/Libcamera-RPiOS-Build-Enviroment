@@ -4,7 +4,7 @@ ENV LANG='C.UTF-8' LC_ALL='C.UTF-8'
 
 RUN dnf update -y
 
-RUN dnf install -y sudo
+RUN dnf install -y sudo rpm-build
 
 RUN dnf install -y \
 	gcc-aarch64-linux-gnu gcc-c++-aarch64-linux-gnu \
@@ -20,7 +20,7 @@ RUN dnf install -y \
 	libjpeg-turbo-devel boost-devel libyaml-devel \
 	libtiff-devel libexif-devel \
 	gstreamer1-devel gstreamer1-plugins-base-devel \
-	gnutls-devel libatomic
+	gnutls-devel libatomic libevent-devel
 
 # Create a custom user to operate in the container
 RUN adduser libcamera
