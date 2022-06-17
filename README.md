@@ -1,6 +1,6 @@
 # Build environment for libcamera for fedora
 
-This will let you build a cross compilation docker image, and use it to compile libcamera for the RPi, and the package it up in a deb file to send to your RPi. A meson cross file will be automatically generated inside the debian bullseye environment. 
+This is a simple way to build testing libcamera rpm's on non fedora distros. The generated rpm files should not be used for production.
 
 ## Setting up your working directory
 #### Make the directory
@@ -28,7 +28,7 @@ This will let you build a cross compilation docker image, and use it to compile 
 ### (Cross-compile) Build libcamera at host compile speeds
 `ninja -C ./build`
 
-### Build the rpm
+## Build the rpm
 ```
 mkdir ../libcamera-0.0.0
 DESTDIR=$(readlink -f ../libcamera-0.0.0) ninja -C ./build install
