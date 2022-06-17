@@ -1,6 +1,6 @@
 # Cross compilation environment for libcamera for the RPi Bullseye OS
 
-This will let you build a cross compilation docker image, and use it to compile libcamera for the RPi. A meson cross file will be automatically generated inside the debian bullseye environment.
+This will let you build a cross compilation docker image, and use it to compile libcamera for the RPi, and the package it up in a deb file to send to your RPi. A meson cross file will be automatically generated inside the debian bullseye environment. 
 
 ## Setting up your working directory
 #### Make the directory
@@ -29,6 +29,12 @@ This will let you build a cross compilation docker image, and use it to compile 
 
 ### Building the deb package
 `sudo DESTDIR=$(readlink -f ../libcamera-raspi-debian) ninja -C ./build/rpi/bullseye install`
+
 `cd ../`
+
 `sudo dpkg -b libcamera-raspi-debian`
 
+## Installing your built deb file
+- You should find a libcamera-raspi-debian.deb file in your working directory, you need to transfer this to your raspberry pi and install it
+- I personally would use sftp with a graphical file manager such as nautilus, but cloud storage, ftp, transfer.sh etc. could work too
+- To install the deb file, simply run `sudo apt install ./libcamera-raspi-debian.deb` in the directory of your transfered deb file
