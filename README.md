@@ -13,7 +13,7 @@ This will let you build a cross compilation docker image, and use it to compile 
 ## Building and installing
 
 ### Build your cross compile docker image: (TODO: make a prebuilt image to pull)
-`sudo docker build -t libcamera/debian/bullseye-cross-arm64 - < Dockerfile.debian.bullseye.cross-arm64`
+`sudo docker build -t libcamera/debian/bullseye-cross-arm64 - < Dockerfile`
 
 ### Run a shell in the new docker image in your working directory (containing libcamera and your mountpoint)
 `sudo docker run -v "$PWD":"$PWD" -w "$PWD" --rm -it libcamera/debian/bullseye-cross-arm64`
