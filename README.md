@@ -6,7 +6,7 @@ This will let you build a cross compilation docker image, and use it to compile 
 #### Make the directory
 `mkdir libcamera-raspi; cd libcamera-raspi`
 #### Download this repo
-`git clone https://gist.github.com/CactiChameleon9/1ce1bcf828e9937beb9c60fd1ebc0118 ./`
+`git clone https://github.com/CactiChameleon9/Libcamera-RPiOS-Build-Enviroment ./`
 #### Clone the libcamera sources
 `git clone https://git.libcamera.org/libcamera/libcamera.git`
 
