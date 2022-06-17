@@ -1,8 +1,0 @@
-Package: libcamera
-Version: 0.0.0
-Architecture: arm64
-Section: misc
-Priority: optional
-Maintainer: Nobody <No@Body>
-Depends: libevent-pthreads-2.1-7
-Description: A package providing libcamera, a part of the camera stack for complex cameras

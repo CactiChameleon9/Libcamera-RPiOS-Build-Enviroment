@@ -1,3 +1,4 @@
-libcamera-raspi-debian/usr
 libcamera
-libcamera-raspi-debian.deb
+*.rpm
+*.tar.xz
+rpmbuild/BUILD/*
